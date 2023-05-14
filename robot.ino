@@ -42,9 +42,9 @@ void sleep() {
   delay(1000);
 }
 
-//          //
-// Movement //
-//          //
+//           //
+// Movements //
+//           //
 
 void moveRight() {
   digitalWrite(Lin, LOW);
