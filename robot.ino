@@ -8,7 +8,7 @@ int valueFront;
 int valueRight;
 int valueLeft;
 int valueBack;
-
+ 
 // Motor Left
 const int L1 = 6;
 const int Lin = 7;
@@ -24,16 +24,19 @@ const int echoPin = 13;
 
 void setup() {
   Serial.begin(9600);
+  //Analog
   pinMode(laserFront, INPUT);
   pinMode(laserLeft, INPUT);
   pinMode(laserRight, INPUT);
   pinMode(laserBack, INPUT);
+  //Motor
   pinMode(L1, OUTPUT);
   pinMode(Lin, OUTPUT);
   pinMode(Lin2, OUTPUT);
   pinMode(R2, OUTPUT);
   pinMode(Rin, OUTPUT);
   pinMode(Rin2, OUTPUT);
+  //Ultrasonic
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 }
@@ -120,7 +123,7 @@ void moveEje() {
   analogWrite(L1, 255);
   digitalWrite(Rin, LOW);
   digitalWrite(Rin2, HIGH);
-  analogWrite(R1, 255);
+  analogWrite(R2, 255);
 }
 
 //            //
