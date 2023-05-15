@@ -8,15 +8,15 @@ int valueFront;
 int valueRight;
 int valueLeft;
 int valueBack;
- 
+
 // Motor Left
-const int L1 = 6;
-const int Lin = 7;
-const int Lin2 = 8;
+const int ENA = 6;
+const int IN1 = 7;
+const int IN2 = 8;
 // Motor Right
-const int R2 = 9;
-const int Rin = 10;
-const int Rin2 = 11;
+const int ENB = 9;
+const int IN3 = 10;
+const int IN4 = 11;
 
 // Ultrasonic
 const int trigPin = 12;
@@ -30,12 +30,12 @@ void setup() {
   pinMode(laserRight, INPUT);
   pinMode(laserBack, INPUT);
   //Motor
-  pinMode(L1, OUTPUT);
-  pinMode(Lin, OUTPUT);
-  pinMode(Lin2, OUTPUT);
-  pinMode(R2, OUTPUT);
-  pinMode(Rin, OUTPUT);
-  pinMode(Rin2, OUTPUT);
+  pinMode(ENA, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  pinMode(ENB, OUTPUT);
+  pinMode(IN3, OUTPUT);
+  pinMode(IN4, OUTPUT);
   //Ultrasonic
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
@@ -50,80 +50,80 @@ void sleep() {
 //           //
 
 void moveRight() {
-  digitalWrite(Lin, LOW);
-  digitalWrite(Lin2, HIGH);
-  analogWrite(L1, 100);
-  digitalWrite(Rin, HIGH);
-  digitalWrite(Rin2, LOW);
-  analogWrite(R2, 200);
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  analogWrite(ENA, 100);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENB, 200);
 }
 
 void verificationLeft() {
   valueLeft = digitalRead(laserLeft);
   if (valueLeft == HIGH) {
-    //Serial.println("Blanco");
+    Serial.println("Blanco");
     moveRight();
   }
 }
 
 void moveLeft() {
-  digitalWrite(Lin, HIGH);
-  digitalWrite(Lin2, LOW);
-  analogWrite(L1, 200);
-  digitalWrite(Rin, LOW);
-  digitalWrite(Rin2, HIGH);
-  analogWrite(R2, 100);
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  analogWrite(ENA, 200);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  analogWrite(ENB, 100);
 }
 
 void verificationRight() {
   valueRight = digitalRead(laserRight);
   if (valueRight == HIGH) {
-    //Serial.println("Blanco");
+    Serial.println("Blanco");
     moveLeft();
   }
 }
 
 void moveBack() {
-  digitalWrite(Lin, LOW);
-  digitalWrite(Lin2, HIGH);
-  analogWrite(L1, 200);
-  digitalWrite(Rin, LOW);
-  digitalWrite(Rin2, HIGH);
-  analogWrite(R2, 200);
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+  analogWrite(ENA, 200);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  analogWrite(ENB, 200);
 }
 
 void verificationFront() {
   valueFront = digitalRead(laserFront);
   if (valueFront == HIGH) {
-    //Serial.println("Blanco");
+    Serial.println("Blanco");
     moveBack();
   }
 }
 
 void moveFront() {
-  digitalWrite(Lin, HIGH);
-  digitalWrite(Lin2, LOW);
-  analogWrite(L1, 200);
-  digitalWrite(Rin, HIGH);
-  digitalWrite(Rin2, LOW);
-  analogWrite(R2, 200);
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  analogWrite(ENA, 200);
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+  analogWrite(ENB, 200);
 }
 
 void verificationBack() {
   valueBack = digitalRead(laserBack);
   if (valueBack == HIGH) {
-    //Serial.println("Blanco");
+    Serial.println("Blanco");
     moveFront();
   }
 }
 
 void moveEje() {
-  digitalWrite(Lin, HIGH);
-  digitalWrite(Lin2, LOW);
-  analogWrite(L1, 255);
-  digitalWrite(Rin, LOW);
-  digitalWrite(Rin2, HIGH);
-  analogWrite(R2, 255);
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+  analogWrite(ENA, 255);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+  analogWrite(ENB, 255);
 }
 
 //            //
@@ -147,7 +147,7 @@ void pulse() {
 }
 
 void attack() {
-  while (valueBack == LOW && valueFront == LOW && valueRight == LOW && valueLeft == LOW) {
+  while (valueBack == HIGH && valueFront == HIGH && valueRight == HIGH && valueLeft == HIGH) {
     pulse();
     delay(50);
   }
